@@ -1,26 +1,25 @@
 <template>
-
-    <p>Products</p>
 <div>
-  <div class="grid grid-cols-4 gap-5">
-    <div v-for="p in products">
-      <ProductCard :product="p"/>
-      
-    </div>
-  </div> 
-   </div>
+
+
+</div>
 </template>
-<script setup>
+
+
+  <script>  
   definePageMeta({
     layout: "products"
   })
 
-  const { data: products } = await useFetch('https://fakestoreapi.com/products') 
-  
-  </script>
-
-
-
-
-
-
+export default {
+  data () {
+    return {
+      data: '',
+    }
+  },
+  async fetch() {
+    const res = await this.$axios.get('https://fakestoreapi.com/products/')
+    console.log(res.data)
+  },
+}
+</script>
